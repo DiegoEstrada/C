@@ -1,26 +1,28 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define N 2
+#define N 5
 typedef struct {
 	int clave;
 	int existencia;
 	double precio;
 	char nombreprod [70];
 }producto;
+FILE *inventario;
 void llenar (producto x[N]);
 void imprimir (producto x[N]);
 void buscar (producto x[N]);
 void EstadoCuenta (producto x[N]);
 void  resurtir (producto x[N]);
 void imprimeuno (producto x[N], int pos);
+void leerdesdearchivo(producto x[N]);
 int main (void)
 {
 	producto x[N];
 	int op;
 	printf("\t\tBienvenido a la tienda \t\t\n");
 	do{
-	printf("Introduuce el nombre del menu.\n1.-Llenar el inventario. \n2.- Ver todo el inventario \n3.- Buscar los productos por primer letra\n4.-Ver la cantidad total de productos en pesos\n5.-Resutir magicamente\n ");
+	printf("Introduuce el nombre del menu.\n1.-Llenar el inventario. \n2.- Ver todo el inventario \n3.- Buscar los productos por primer letra\n4.-Ver la cantidad total de productos en pesos\n5.-Resutir magicamente\n6.- Leer desde archivo\n ");
 	scanf("%d",&op);
 
 	switch (op)
@@ -40,15 +42,16 @@ int main (void)
 		case 5:
 		    resurtir(x);
 		break;
+		case 6:
+            leerdesdearchivo(x);
+        break;
 		default: puts("Ingresa solo numeros entre el uno y el cinco");
 		break;
 	}
 }
-while (op>=1 && op <=5);
+while (op>=1 && op <=6);
 return 0;
 }
-
-
 void llenar (producto x[N])
 {
 	int i,au;
@@ -97,7 +100,7 @@ void imprimeuno (producto x[N] ,int pos)
 void buscar (producto x[N])
 {
 system("cls");
-	int i;
+	int i,h=0;
 	char letra;
 	printf("Ingresa la letra:\n");
 	scanf("%c",&letra);
@@ -105,7 +108,10 @@ system("cls");
 	{
 		if (x[i].nombreprod[0]==letra)
 		imprimeuno(x,i);
+		h++;
 	}
+	printf ( (h==0) ? "\n\tNo hay existencias\n\t" : "");
+
 }
 
 
@@ -137,5 +143,28 @@ void  resurtir (producto x[N])
 	imprimir(x);
 
 }
+void leerdesdearchivo(producto x[N])
+{
+    int i=0;
+inventario=fopen("Inventario.txt","r");
+if (inventario==NULL)
+    printf("Error al abrir el archivo\n");
+else
+    {
 
+
+    for (i=0;feof(inventario)==0;i++)
+    {
+        fflush(stdin);
+        fscanf(inventario,"%d",&x[i].clave);
+        fflush(stdin);
+        fscanf(inventario,"%d",&x[i].existencia);
+        fflush(stdin);
+        fscanf(inventario,"%lf",&x[i].precio);
+        fflush(stdin);
+        fscanf(inventario,"%s",&x[i].nombreprod);
+    }
+    fclose(inventario);
+    }
+}
 
