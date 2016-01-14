@@ -41,15 +41,15 @@ ultimo==NULL;
 				system("pause");
 				break;
 			case 4:
-				//buscar();
+				buscar();
 				system("pause");
 				break;
 			case 5:
-				//estadodecuenta();
+				estadodecuenta();
 				system("pause");
 				break;
             case 6:
-                //resurtirm();
+                resurtirm();
                 system("pause");
                 break;
                 case 7:
@@ -150,6 +150,7 @@ void borraruno()
 	}
 
 		else{
+                auxiliar = primero;
 		while(auxiliar->siguiente!=ultimo){
 			auxiliar=auxiliar->siguiente;
 		}
@@ -222,18 +223,109 @@ void leerinventario()
         while(!feof(inventario))
         {
             fflush(stdin);
-            fscanf(inventario,"%d",nuevo->clave);
+            fscanf(inventario,"%d",&nuevo->clave);
             fflush(stdin);
-            fscanf(inventario,"%d",nuevo->existencia);
+            fscanf(inventario,"%d",&nuevo->existencia);
             fflush(stdin);
-            fscanf(inventario,"%lf",nuevo->precio);
+            fscanf(inventario,"%lf",&nuevo->precio);
             fflush(stdin);
-            fscanf(inventario,"%s",nuevo->nombreprod);
+            fscanf(inventario,"%s",&nuevo->nombreprod);
             nuevo->siguiente==NULL;
-            primero=nuevo;
+            if(primero==NULL)
+		    primero=nuevo;
+		if (ultimo!=NULL)
+        {
+            ultimo->siguiente=nuevo;
             ultimo=nuevo;
+        }
         }
     }
     fclose(inventario);
 }
 
+int determinarelementos() //recordar que si no existen  productos u es igual a cro pero al definr el arreglo sera necesario suamr uno al valor que retone para construir el arreglo de la estrucutura
+{
+    struct producto *auxiliar;
+    auxiliar=primero;
+    int u=0;
+	if(auxiliar==NULL)
+    {
+
+    }
+    else
+    {
+		while(auxiliar!=NULL)
+
+            {
+			auxiliar=auxiliar->siguiente;
+            u++;
+            }
+
+    }
+    return u;
+}
+void buscar()
+{
+    system("cls");
+    struct producto *auxiliar;
+    auxiliar=primero;
+    int h=0;
+    char letra;
+    printf("Introduce la letra que deseas buscar\n");
+    scanf("%s",&letra);
+    if (auxiliar==NULL)// no hay refgistros
+        printf("No existen elementos con los cuales realizar la busqueda\n");
+    else
+    {
+
+        while(auxiliar!=NULL)
+        {
+            if (auxiliar->nombreprod[0]==letra)
+            {
+                printf("Nombre: %s \nClave: %d \nNumero de unidades: %d \nPrecio %lf\n",auxiliar->nombreprod,auxiliar->clave,auxiliar->existencia,auxiliar->precio);
+                h++;
+            }
+            printf ( (h==0) ? "\n\tNo hay existencias\n\t" : "");
+            auxiliar=auxiliar->siguiente;
+        }
+    }
+
+}// fin de buscar
+void estadodecuenta()
+{
+    system("cls");
+    struct producto *auxi;
+    auxi=primero;
+    int i;
+    double total=0.0;
+    if (auxi==NULL)
+        puts("No tienes productos registrados\nRegistra Productos\n");
+    else
+    {
+        while(auxi!=NULL)
+        {
+        total=total+((auxi->precio)*(auxi->existencia));
+        auxi=auxi->siguiente;
+        }
+    }
+    printf("\tEn tu inventario hay un total de %2lf pesos mexicanos, recuerdalo\t\n\a",total);
+}//termina Dinero en caja
+void resurtirm()
+{
+    system("cls");
+    struct producto *auxiliar;
+    auxiliar=primero;
+    printf("Observa tu inventario antes de continuar con el rebastecimeiento\n");
+    imprimir();
+   printf("\n\n");
+    while(auxiliar!=NULL)
+    {
+        if((auxiliar->existencia)<=10)
+        {
+            auxiliar->existencia=(auxiliar->existencia+100);
+        }
+        auxiliar=auxiliar->siguiente;
+    }
+    printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+    imprimir();
+}
