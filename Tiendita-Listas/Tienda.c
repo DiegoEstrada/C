@@ -60,16 +60,19 @@ ultimo==NULL;
                     escribedoc();
                     system("pause");
                     break;
+                case 9:
+                    exit (0);
+                    break;
             default: printf("\tIngresa solo numeros del uno al seis\n\n");
             system("pause");
             break;
 		}
-	}while(op>=1 && op <=8);
+	}while(op>=1 && op <=9);
 }
 void menu()
 {
     printf("\t\tBienvenido a la tienda \t\t\n");
-	printf("Introduuce el nombre del menu.\n1.-Llenar el inventario. \n2.- Ver todo el inventario \n3.- Borrar un elemento\n4.-Buscar por la primer letra\n5.-Ver la cantidad total de productos en pesos\n6.- Resurtir magicamnete\n7.- Leer el inventario desde un archivo\n8 .-Reescribir en el inventario\n   ");
+	printf("Introduuce el nombre del menu.\n1.-Llenar el inventario. \n2.- Ver todo el inventario \n3.- Borrar un elemento\n4.-Buscar por la primer letra\n5.-Ver la cantidad total de productos en pesos\n6.- Resurtir magicamnete\n7.- Leer el inventario desde un archivo\n8 .-Reescribir en el inventario\n9.- Salir\n   ");
 
 }
 void llenar()
@@ -110,6 +113,7 @@ if(nuevo==NULL){
 }// cierra llenar
 void imprimir()
 {
+
     struct producto *auxiliar;
     auxiliar=primero;
     int u=1;
@@ -211,8 +215,6 @@ void escribedoc()
 }//Termina fucnion imprimir a documento
 void leerinventario()
 {
-    primero == NULL;
-	ultimo == NULL;
 	struct producto*nuevo;
 	nuevo = (struct producto*)malloc(sizeof(struct producto));
     inventario=fopen("Inventario.txt","r");
@@ -223,14 +225,14 @@ void leerinventario()
         while(!feof(inventario))
         {
             fflush(stdin);
-            fscanf(inventario,"%d",&nuevo->clave);
+            fscanf(inventario,"%d\n",&nuevo->clave);
             fflush(stdin);
-            fscanf(inventario,"%d",&nuevo->existencia);
+            fscanf(inventario,"%d\n",&nuevo->existencia);
             fflush(stdin);
-            fscanf(inventario,"%lf",&nuevo->precio);
+            fscanf(inventario,"%lf\n",&nuevo->precio);
             fflush(stdin);
-            fscanf(inventario,"%s",&nuevo->nombreprod);
-            nuevo->siguiente==NULL;
+            fscanf(inventario,"%s\n",&nuevo->nombreprod);
+            nuevo->siguiente=NULL;
             if(primero==NULL)
 		    primero=nuevo;
 		if (ultimo!=NULL)
@@ -242,6 +244,7 @@ void leerinventario()
     }
     fclose(inventario);
 }
+
 
 int determinarelementos() //recordar que si no existen  productos u es igual a cro pero al definr el arreglo sera necesario suamr uno al valor que retone para construir el arreglo de la estrucutura
 {
