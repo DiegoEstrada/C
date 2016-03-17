@@ -1,0 +1,6 @@
+Un microprocesador es un dispositivo electronico que necesita de todos los perifericos para poder funcionar correctamente, es decir, tener una motherboard como soporte (con todos los buses que necesite el microprocesador: bus de direccion, datos, control, etc), tener tambien el banco de memoria tanto RAM como ROM y mas. 
+Este microprocesador puede hacer cualquier funcion que se le ordene dependiendo del software que lo gobierne. 
+
+En un microcontrolador, internamente ya estan implementados todos los buses, el banco de memoria, clock, temporizadores, etc y tambien esta el software que lo gobierna, pero este software es unico y tiene una sola funcion la cual es para el cual fue diseñado. Es un sistema cerrado mientras que un microprocesador es un sistema abierto desde este punto de vista, puede realizar muchisima mas funciones ahora y dentro de 3 segundo cambiar (tal vez). 
+
+Por ejemplo: podrias hacer con un microcontrolador un sistema de alarma completo para tu casa (esa es su unica funcion) y tendrias un costo muy bajo, pero tambien lo podrias hacer con un microprocesador pero tu costo seria altisimo por la cantidad de elementos que necesitaria el mismo de soporte a su alrededor (seria una pc) y ademas del costo tambien seria un desperdicio de recursos poner un microprocesador haciendo tal tarea. 
