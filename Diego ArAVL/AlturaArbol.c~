@@ -1,0 +1,28 @@
+d#include<stdio.h>
+#include<stdlib.h>
+#include "Elem.h"
+#include "AVL.h"
+#include "Enteros.h"
+
+int main(){
+    int i,n,elemento;
+    Dicbin a=vacio();
+    printf("Introduce el numero de elementos del arbol:\n" );
+    scanf("%d",&n);
+    for (i=0;i<n;i++)
+    {
+    printf("Introduce la raiz [%d]",i+1);
+        scanf("%d",&elemento);
+        a=insord(elemento,a);
+    }
+
+
+    puts("Los elementos del arbol son:");
+    inorder(a);
+    puts("---------------");
+    printf ("La altura del arbol anterior es %d \n", Altura(a));
+    puts("-------");
+   (EsAVL(a))? printf("\tEl arbol anterior es AVL \n\t") : printf("\tEl arbol  anterior no es AVL \n\t");
+
+    return 0;
+}

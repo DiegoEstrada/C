@@ -1,0 +1,19 @@
+#include "Dicbin.h"
+typedef Dicbin AVL;
+
+int factbal (Dicbin a)
+{
+if (esvacio(a)) return 0;
+else return (Altura(izq(a)))-(Altura(der(a)));
+
+}
+int EsAVL(AVL a)
+{
+if (esvacio(a)) return 1;
+else
+return (((absoluto(factbal(a))<=1)&&(EsAVL(izq(a)))&& (EsAVL(der(a))))) ? 1:0;
+
+
+}
+
+
