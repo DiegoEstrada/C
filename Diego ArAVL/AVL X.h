@@ -25,13 +25,21 @@ AVL rotaizq(Dicbin a){
 }
 
 AVL rotaderizq(Dicbin a){
-	return rotader(cons(raiz(a),izq(a),rotaizq(der(a))));
+	return rotader(cons(raiz(a),rotaizq(izq(a)),der(a)));
 }
 
 AVL rotaizqder(Dicbin a){
-	return rotaizq(cons(raiz(a),rotader(izq(a)),der(a)));
+	return rotaizq(cons(raiz(a),izq(a),rotader(der(a))));
+}
+/*
+AVL rotaderizq(Dicbin a){
+	return rotader(cons(raiz(a),der(a),rotaizq(der(a))));
 }
 
+AVL rotaizqder(Dicbin a){
+	return rotaizq(cons(raiz(a),rotader(izq(a)),izq(a)));
+}
+*/
 
 AVL hazAVL(Dicbin a){
 	if(EsAVL(a)){

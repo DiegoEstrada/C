@@ -26,7 +26,7 @@ int main(){
     puts("---------------");
    (EsAVL(a))? printf("\tEl arbol anterior es AVL \n\t") : printf("\tEl arbol  anterior no es AVL \n\t");
    printf("El facotor de balanceo es %d \n",factbal(a));
-   puts("------------------------------------");
+   puts("------------------------------------------");
 
 
         if (EsAVL(a))
@@ -34,19 +34,36 @@ int main(){
         printf("Ahora introduce un  nuevo elemento y trataremos de balancear el arbol si lo requiere\n");
         scanf("%d",&nuevoval);
         a=insord(nuevoval,a);
-        if (EsAVL(a))
+        if (EsAVL(a)){
             printf("El arbol sigue siendo AVL \n");
-        else
-            a=hazAVL(a);
-
-        printf("\tFactor de balanco del arbol rotado %d ",factbal(a));
+            printf("El nuevo factor de balanceo es %d  \n",factbal(a));
+            while(EsAVL(a))
+            {
+                system("cls");
+            printf("El nuevo factor de anterior balanceo es %d  \n",factbal(a));
+            printf("Introduce otro elemento \n");
+            scanf("%d",&nuevoval);
+            a=insord(nuevoval,a);
+            }
+        }
 
     }
     else
     {
         printf("Trataremos de balancear el arbol anterior\n");
-        a=hazAVL(a);
+        int i;
+        for(i=0;i<3;i++)
+             a=hazAVL(a);
+        (EsAVL(a))? printf("El arbol anterior rotado es AVL \n") : printf("El arbol no pudo convertirse en  AVL \n");
         printf("El nuevo factor de balanceo es %d ",factbal(a));
+        while(EsAVL(a))
+            {
+                system("cls");
+            printf("El nuevo factor de anterior balanceo es %d  \n",factbal(a));
+            printf("Introduce otro elemento \n");
+            scanf("%d",&nuevoval);
+            a=insord(nuevoval,a);
+            }
     }
 
 
